@@ -33,10 +33,33 @@ pip install -r requirements.txt
 
 ## Utilisation
 
+### Client
+
 Pour utiliser le client, il faut lancer le programme Python appelé `main.py` se trouvant dans le répertoire `client/`.  
 Un exemple avec l'environnement virtuel Python:
 
 ```bash
 .venv/bin/python3 clients/main.py
 ```
+
+L'interface permet de se connecter à un site web, voici les formats d'URL supporté:
+- www.google.com
+- http://www.google.com
+- https://www.google.com
+
+Tout ces formats d'URL supportent la précision du port, pour cela rajouter un `:port` à la fin de votre requête:
+- www.google.com:80
+- www.google.com:443
+- http://www.google.com:80
+- https://www.google.com:443
+
+Il est aussi possible d'ajouter un chemin spécifique vers une ressource demandé:
+- www.google.com/index.html
+- http://www.google.com/index.html
+- https://www.google.com/index.html
+- www.google.com/index.html:80
+- www.google.com/index.html:443
+- http://www.google.com/index.html:80
+- https://www.google.com/index.html:443
+
 
