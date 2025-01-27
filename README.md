@@ -10,6 +10,7 @@ Le client peut réaliser une requête vers n'importe quelle serveur web et récu
 ## Serveur
 
 Le serveur web est capable d'envoyer le contenu d'une page web, et de répondre en cas d'erreur avec un nombre limité de codes d'erreur décrit dans la [RFC du protocol HTTP](https://www.rfc-editor.org/rfc/rfc2616.txt).
+Un fichier de configuration est présent, et permet de définir des règles d'accès pour des ressources (autorisé, bloqué, ressources par défaut pour une URL...) 
 
 ## Installation
 
@@ -62,4 +63,11 @@ Il est aussi possible d'ajouter un chemin spécifique vers une ressource demand�
 - http://www.google.com/index.html:80
 - https://www.google.com/index.html:443
 
+### Serveur
 
+Pour utiliser le serveur, il faut lancer le programme Python appelé `main.py` se trouvant dans le répertoire `server/`.
+Un exemple avec l'environnement virtuel Python:
+
+```bash
+.venv/bin/python3 server/main.py
+```
