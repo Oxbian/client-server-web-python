@@ -2,6 +2,7 @@ import socket
 import ssl
 import sys
 import re
+import os
 from pathlib import Path
 
 class httpClient:
@@ -9,6 +10,9 @@ class httpClient:
         self.port = 80
         self.is_ssl = False
         self.path = Path(__file__).parent
+
+        # Création du répertoire de cache des site web sauvegardé
+        os.makedirs(self.path / "cache", exist_ok=True)
 
     def parse_url(self, url):
         """Récupération des données importantes dans l'URL"""
