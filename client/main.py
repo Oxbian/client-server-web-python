@@ -12,7 +12,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         
         # Récupère le chemin absolu du fichier
-        self.path = os.path.dirname(os.path.dirname(__file__))
+        self.path = os.path.dirname(__file__)
  
         self.client = httpClient()
         self.setWindowTitle("Client web - Laboratoire 1")
@@ -61,7 +61,7 @@ class MainWindow(QMainWindow):
         print(f"Chemin: {self.path}")
         browser = QWebEngineView()
         if (status == "200"):
-            browser.setUrl(QUrl.fromLocalFile(self.path + "/" + url + ".html"))
+            browser.setUrl(QUrl.fromLocalFile(self.path + "/cache/" + url + ".html"))
         else:
             browser.setUrl(QUrl("https://http.cat/" + str(status)))
 
