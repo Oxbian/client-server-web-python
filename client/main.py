@@ -19,6 +19,7 @@ class MainWindow(QMainWindow):
         self.search_window()
 
     def connect(self):
+        """Connexion du client au socket du serveur"""
         print("Connexion en cours...")
 
         self.connectBtn.setEnabled(False)
@@ -59,6 +60,8 @@ class MainWindow(QMainWindow):
         """Affichage du contenu de la page ou de la page d'erreur"""
 
         print(f"Chemin: {self.path}")
+        # Utilisation de browser de Qt pour afficher les fichiers html locaux
+        # Ou les codes d'erreur avec http.cat
         browser = QWebEngineView()
         if (status == "200"):
             browser.setUrl(QUrl.fromLocalFile(self.path + "/cache/" + url + ".html"))

@@ -13,6 +13,7 @@ class httpServer:
         self.config = _config
         self.path = _curr_dir 
 
+
     def listen_connexion(self):
         """Lancement de l'écoute du serveur et ouverture d'une session avec le client"""
 
@@ -26,6 +27,7 @@ class httpServer:
 
             self.handle_client(client_socket, client_addr)
 
+
     def handle_client(self, client_socket, client_addr):
         """Gestion du socket client, de sa demande et renvoi des données souhaitées"""
         request = client_socket.recv(4096).decode('utf-8')
@@ -34,6 +36,7 @@ class httpServer:
 
         client_socket.sendall(response.encode('utf-8'))
         client_socket.close()
+
 
     def handle_request(self, request):
         """Gestion de la requête, retourne la page ou le code d'erreur correspondant à la requête"""
@@ -51,7 +54,7 @@ class httpServer:
         
         # Si GET, alors récupérer le chemin, sinon méthode non authorisé
         if method.lower() == "get":
-            if ressource == "info":
+            if ressource == "/info":
                 status = 200
                 page = "info.html"
             else:
@@ -60,14 +63,23 @@ class httpServer:
             try:
                 with open(self.path / "pages" / page, "r") as file:
                     content = file.read()
-                    print(content)
+
+                    if ressource == "/info":
+                        content = content.replace("{request}", request)
+
             except Exception as e:
                 print(f"Une erreur inattendue est survenue : {e}")
                 status = 500
         else:
+            print(f"Méthode non supportée: {method}")
             status = 405
 
-        # Créer la réponse
+        return self.generate_response(protocol, content, status) 
+
+
+    def generate_response(self, protocol, content, status):
+        """Génère la réponse du serveur selon le code de status"""
+
         date_utc = datetime.utcnow()
         date_str = date_utc.strftime("%a, %d %b %Y %H:%M:%S GMT")
 
@@ -86,3 +98,5 @@ class httpServer:
             response = f"{protocol} 500 Internal Server Error\r\nDate: {date_str}\r\nContent-Type: text/html; charset=UTF-8"
 
         return response
+
+

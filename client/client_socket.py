@@ -14,6 +14,7 @@ class httpClient:
         # Création du répertoire de cache des site web sauvegardé
         os.makedirs(self.path / "cache", exist_ok=True)
 
+
     def parse_url(self, url):
         """Récupération des données importantes dans l'URL"""
         self.url = url
@@ -36,10 +37,12 @@ class httpClient:
         else:
             self.chemin = '/'
 
+
     def is_ip(self, s):
         """Vérificateur de si la chaine de caractère est sous forme d'adresse IP"""
         ipv4_regex = r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
         return bool(re.match(ipv4_regex, s))
+
 
     def get_ip(self):
         """Récupération de l'adresse IP pour le socket"""
@@ -50,6 +53,7 @@ class httpClient:
             self.ip = socket.gethostbyname(self.url)
 
         print(f"Connexion à: {self.ip}:{self.port}")
+
 
     def connect(self, url):
         """Connecte le socket à l'URL voulu par l'utilisateur"""
@@ -122,6 +126,7 @@ class httpClient:
         f.close()
         self.socket.close()
         return self.status
+
 
     def get_url(self):
         """Retourne l'URL utiliser pour la connexion"""
